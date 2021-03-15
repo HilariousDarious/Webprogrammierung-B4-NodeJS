@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Tier-Enzyklopädie</title>
+  </head>
+  <body>
+    <div>
+      <nav class="nav">
+        <ul class="navbar">
+          <li><img src="images/ZoopediaLogo.png" id="Logo" /></li>
+          <li>
+            <a href="../" class="active">Home</a>
+          </li>
+          <li><a href="../kontakt">Kontakt</a></li>
+          <li><a href="../vergleich">Vergleich Hamster Maus</a></li>
+          <li><a href="../uebungKontakt">Vergleich Tiger Panda</a></li>
+          <li>
+            <a
+              ><input
+                type="button"
+                name="homefav"
+                value="Zu Favoriten hinzufügen/entfernen"
+                onclick="togglefavorithome()"
+            /></a>
+            <script>
+              function togglefavorithome() {
+                var value = getCookie("home" + "favorit");
+                if (value == "false") {
+                  document.cookie = "homefavorit=true;";
+                } else if(value == "true") {
+                  document.cookie = "homefavorit=false;";
+                } else {
+                  document.cookie = "homefavorit=true;";
+                } 
+              }
+            </script>
+            <p id="text" style="display: none;">
+              Seite zu Favoriten hinzugefügt!
+            </p>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="frontPageImage">
+      <img src="images/fox.jpg" id="homeImage" />
+      <div id="homeImageText">Tier-Enzyklopädie</div>
+      <p>
+        Meist besuchter Inhalt:
+        <script type="text/javascript">
+          const sites = ["home", "kontakt", "vergleich", "vergleich2"];
+          function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(";").shift();
+            else return 0;
+          }
+          var comp = 0;
+          var sitename = "keine";
+          for (const element of sites) {
+            value = parseInt(getCookie(element + "aufrufe"));
+            if (value > comp) {
+              comp = value;
+              sitename = element;
+            }
+          }
+          document.write(comp + " " + sitename);
+        </script>
+      </p>
+      <p>
+        Favoriten:
+        <script type="text/javascript">
+          for (const element of sites) {
+            value = getCookie(element + "favorit");
+            if (value == "true") {
+              document.write(" " + element);
+            }
+          }
+        </script>
+      </p>
+      <section>
+        <textarea
+          class="commentBox"
+          placeholder="Hier Kommentar eingeben"
+          type="textarea"
+        ></textarea>
+        <p><span class="counter">140</span> Characters left</p>
+        <button>Post</button>
+        <ul class="clearfix comments"></ul>
+      </section>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+      <script>
+        try {
+          allcomments === undefined;
+        } catch (error) {
+          allcomments = [];
+        }
+        if (document.cookie.indexOf("comments") == -1) {
+          document.cookie = "comments=";
+        }
+        var cookie = getCookie("comments");
+        const parts = cookie.split(`,`);
+        for (const part of parts) {
+          $("<li>").text(part).prependTo(".comments");
+          $("button").attr("disabled", "true");
+          $(".counter").text("140");
+          $(".commentBox").val("");
+        }
+        $(document).ready(function () {
+          $("button").click(function () {
+            var cookie = getCookie("comments");
+            var comment =
+              "UserID: " + getCookie("id") + ": " + $(".commentBox").val();
+
+            allcomments.push(comment);
+            console.log(allcomments);
+            $("<li>").text(comment).prependTo(".comments");
+            $("button").attr("disabled", "true");
+            $(".counter").text("140");
+            $(".commentBox").val("");
+            $("<button>");
+
+            var cookies = cookie + "," + comment;
+            document.cookie = "comments=" + cookies + ";";
+          });
+
+          $(".commentBox").keyup(function () {
+            var commentLength = $(this).val().length;
+            var charLeft = 140 - commentLength;
+            $(".counter").text(charLeft);
+
+            if (commentLength == 0) {
+              $("button").attr("disabled", "true");
+            } else if (commentLength > 140) {
+              $("button").attr("disabled", "true");
+            } else {
+              $("button").removeAttr("disabled", "true");
+            }
+          });
+
+          $("button").attr("disabled", "true");
+        });
+      </script>
+    </div>
+    <div class="abstand">
+      <h1>Herzlich Willkommen!</h1>
+      <p style="font-size: 2vw;">
+        Die Evolution hat eine unendliche Artenvielfalt hervorgebracht, die Sie
+        im realen Leben möglicherweise niemals zu Gesicht bekommen werden. Etwas
+        über diese Vielfalt der Tierwelt zu erfahren, stellt eine Bereicherung
+        im Leben dar.
+      </p>
+      <h2>
+        Inhalt
+      </h2>
+      <ol>
+        <li>
+          <a href="#tiere" style="color: rgb(0, 0, 0); text-decoration: none;"
+            >Tiere</a
+          >
+        </li>
+        <li>
+          <a
+            href="#tierDesMonats"
+            style="color: rgb(0, 0, 0); text-decoration: none;"
+            >Tier des Monats</a
+          >
+        </li>
+        <li>
+          <a
+            href="#dieserMonat"
+            style="color: rgb(0, 0, 0); text-decoration: none;"
+          >
+            Dieser Monat</a
+          >
+        </li>
+        <li>
+          <a
+            href="#letzterMonat"
+            style="color: rgb(0, 0, 0); text-decoration: none;"
+            >Letzter Monat</a
+          >
+        </li>
+      </ol>
+      <h2 id="tiere">Tiere</h2>
+      <p>
+        Waren Sie schon einmal auf der Wikipedia Seite zu Tiere? Allein der
+        erste Satz verdirbt einem doch gleich wieder den Spaß am Lesen: „Tiere
+        sind vielzellige Lebensformen, die eine Form heterotrophen Stoff- und
+        Energiewechsels betreiben, somit in der Ernährung auf Körpersubstanz
+        oder Stoffwechselprodukte anderer Organismen angewiesen sind, und keine
+        Pilze sind.“ (Quelle:
+        <a href="https://de.wikipedia.org/wiki/Tier">Wikipedia Tier</a>) Da muss
+        es doch eine einfachere Beschreibung geben, was Tiere sind.
+      </p>
+      <p>
+        Tiere sind Lebewesen, die sich im Gegensatz zu den Pflanzen heterotroph
+        ernähren, die also in der Ernährung auf Körpersubstanz oder
+        Stoffwechselprodukte anderer Organismen angewiesen sind. Zudem sind
+        Tiere meist frei beweglich und bestehen aus einzelnen, wenigen oder
+        vielen Zellen. Alle Tiere besitzen Reizbarkeit und die meisten auch
+        Sinneszellen und ein Nervensystem. Bisher sind über 1 Million Tierarten
+        bekannt, die in den verschiedensten Lebensräumen verbreitet sind. Ein
+        Teil dieser Tiere hat sich sogar zu Parasiten entwickelt.
+      </p>
+    </div>
+    <div class="abstand">
+      <h3 id="tierDesMonats">Tier des Monats!</h3>
+      <p class="textTierMonat">
+        Jeden Monat wird das Tier des Monats gewählt! Dieses Tier ist dann als
+        großes Bild auf der Homepage zu sehen.
+      </p>
+      <p class="textTierMonat">
+        Hier unten ist eine Übersicht, welche Tiere zeigt, die in den letzten
+        Monaten gewählt worden sind.
+      </p>
+      <table>
+        <!--  <tab class="table">
+            <table border="1"> -->
+        <caption>
+          Tier des Monats
+        </caption>
+        <tr>
+          <th id="dieserMonat">Monat</th>
+          <th>Tier</th>
+        </tr>
+        <tr>
+          <td>Januar 2021</td>
+          <td>Fuchs</td>
+        </tr>
+        <tr>
+          <td id="letzterMonat">Dezember 2020</td>
+          <td>Tiger</td>
+        </tr>
+        <tr>
+          <td>November 2020</td>
+          <td>Esel</td>
+        </tr>
+        <!--    </tab> -->
+      </table>
+    </div>
+  </body>
+</html>

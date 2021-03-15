@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="../style.css" />
+    <title>Tier-Enzyklopädie</title>
+  </head>
+  <body>
+    <div class="abstand">
+      <nav class="nav">
+        <ul class="navbar">
+          <li><img src="images/ZoopediaLogo.png" id="Logo" /></li>
+          <li><a href="../">Home</a></li>
+          <li><a href="../kontakt">Kontakt</a></li>
+          <li>
+            <a href="../vergleich">Vergleich Hamster Maus</a>
+          </li>
+          <li>
+            <a href="../uebungKontakt" class="active">Vergleich Tiger Panda</a>
+          </li>
+          <li>
+            <a
+              ><input
+                type="button"
+                name="vergleich2fav"
+                value="Zu Favoriten hinzufügen/entfernen"
+                onclick="togglefavoritvergleich2()"
+            /></a>
+            <script>
+              function getCookie(name) {
+                const value = `; ${document.cookie}`;
+                const parts = value.split(`; ${name}=`);
+                if (parts.length === 2) return parts.pop().split(";").shift();
+                else return 0;
+              }
+              function togglefavoritvergleich2() {
+                var value = getCookie("vergleich2" + "favorit");
+                if (value == "false") {
+                  document.cookie = "vergleich2favorit=true;";
+                } else if (value == "true") {
+                  document.cookie = "vergleich2favorit=false;";
+                } else {
+                  document.cookie = "vergleich2favorit=true;";
+                }
+              }
+            </script>
+            <p id="text" style="display: none;">
+              Seite zu Favoriten hinzugefügt!
+            </p>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="frontPageImage">
+      <img src="../images/fox.jpg" id="homeImage" />
+      <div id="homeImageText">Tier-Enzyklopädie</div>
+    </div>
+    <div class="grid-containerTest abstand">
+      <div class="Left-Side">
+        <h1>Tiger</h1>
+        <img src="../images/tiger.jpg" />
+        <p>
+          Der Tiger (Panthera tigris) ist eine in Asien verbreitete Großkatze.
+          Er ist aufgrund seiner Größe und des charakteristischen dunklen
+          Streifenmusters auf goldgelbem bis rotbraunem Grund unverwechselbar.
+          Es gibt acht bis neun Unterarten, die als Festlands- und
+          Inselunterarten unterschieden werden und im Erscheinungsbild
+          gewissermaßen voneinander abweichen. Die größten Unterschiede bestehen
+          zwischen den kleinen, kontrastreichen Sumatratigern und den großen,
+          blasser gefärbten Sibirischen Tigern, auch als Amurtiger bezeichnet.
+          Als typische Unterarten zwischen den beiden Extremen gelten der
+          indische Bengaltiger und Indochinesische Tiger. Der ausgestorbene
+          Balitiger stellte ursprünglich die kleinste Unterart dar. Die
+          sibirische Unterart ist nach dem Eisbären und Braunbären das
+          drittgrößte landbewohnende Raubtier.
+        </p>
+      </div>
+      <div class="Right-Side">
+        <h1>Panda</h1>
+        <img src="../images/panda.jpg" />
+        <p>
+          Der Große Panda (Ailuropoda melanoleuca), auch Riesenpanda oder
+          Pandabär, ist eine Säugetierart aus der Familie der Bären (Ursidae).
+          Als Symbol des WWF und manchmal auch des Artenschutzes allgemein hat
+          er trotz seines sehr beschränkten Verbreitungsgebiets weltweite
+          Bekanntheit erlangt. In älterer deutscher Literatur wird der Große
+          Panda auch Bambusbär oder Prankenbär genannt. Zurzeit gibt es
+          schätzungsweise 1864 frei lebende Exemplare. Darunter ist mindestens
+          ein Albino.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
